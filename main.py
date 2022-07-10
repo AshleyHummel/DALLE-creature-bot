@@ -1,3 +1,4 @@
+import webbrowser
 import tweepy
 import logging
 
