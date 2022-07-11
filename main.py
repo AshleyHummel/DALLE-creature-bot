@@ -61,9 +61,16 @@ time.sleep(70) # delay (seconds) to let DALLE mini generate an image
 images = driver.find_elements(By.XPATH, '//img') # gets list of images on DALLE mini site
 img_path = "/Users/ashleyhummel/Desktop/creature_bot_images"
 file_name = creature_prompt + ".png"
-fullfilename = os.path.join(img_path, file_name)
+full_file_name = os.path.join(img_path, file_name)
 
 src = images[3].get_attribute('src') # images[3] is the FIRST generated image
-urllib.request.urlretrieve(src, fullfilename) # save image to specific folder with a file name
+urllib.request.urlretrieve(src, full_file_name) # save image to specific folder with a file name
 
 driver.quit()
+
+# POST TO TWITTER :D
+
+media = api.media_upload(img_path + "/" + file_name)
+
+# post tweet
+api.update_status(status=creature_prompt, media_ids=[media.media_id])
