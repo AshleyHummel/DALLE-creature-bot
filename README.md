@@ -16,7 +16,7 @@ Visit it here! --> https://twitter.com/DALLE_creatures
 - selenium
 
 ## Content
-<img src="image.png" width="700">
+<img src="content.png" width="500">
 
 ## License
 This project is open source and available under the MIT License.
