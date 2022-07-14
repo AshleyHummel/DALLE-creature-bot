@@ -10,7 +10,7 @@ Visit it here! --> https://twitter.com/DALLE_creatures
 
 ## Features/Packages
 - Pulls Twitter API keys/tokens from local environment variables
--tweepy (python library to access Twitter API)
+- tweepy (python library to access Twitter API)
 - BeautifulSoup (bs4)
 - requests
 - selenium
