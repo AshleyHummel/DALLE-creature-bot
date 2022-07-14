@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import tweepy
 
 # environment variables
@@ -54,7 +55,7 @@ driver.get("https://www.craiyon.com/")
 
 prompt_input = driver.find_element(By.ID, "prompt")
 prompt_input.send_keys(creature_prompt)
-time.sleep(70) # delay (seconds) to let DALLE mini generate an image
+time.sleep(120) # delay (seconds) to let DALLE mini generate an image
 
 # RETRIEVE ONE OF THE IMAGES AND SAVE TO FOLDER
 
