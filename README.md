@@ -14,7 +14,7 @@ Visit it here! --> https://twitter.com/DALLE_creatures
 - BeautifulSoup (bs4)
 - requests
 - selenium
-- Executes Cron Job through Ksh script to post hourly
+- Executes Cron Job through Ksh script to make automated posts
 
 ## Content
 <img src="content.png" width="500">
