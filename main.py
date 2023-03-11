@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import shutil
 import tweepy
 
 # environment variables
@@ -37,6 +38,7 @@ try:
     print("Authentication successful")
 except:
     print("Authentication failed")
+    raise
 
 # GETTING CREATURE PROMPT FROM https://artprompts.org/creature-prompts/
 # (code from https://www.freecodecamp.org/news/web-scraping-python-tutorial-how-to-scrape-data-from-a-website/ )
@@ -51,11 +53,11 @@ print("Prompt:", creature_prompt)
 s = Service('/Applications/chromedriver') # changed to avoid DeprecationWarning
 driver = webdriver.Chrome(service=s)
 
-driver.get("https://www.craiyon.com/")
+driver.get("https://www.craiyon.com/") # , headers={'User-Agent': 'Mozilla/5.0'})
 
 prompt_input = driver.find_element(By.ID, "prompt")
 prompt_input.send_keys(creature_prompt)
-time.sleep(120) # delay (seconds) to let DALLE mini generate an image
+time.sleep(150) # delay (seconds) to let DALLE mini generate an image
 
 # RETRIEVE ONE OF THE IMAGES AND SAVE TO FOLDER
 
@@ -64,14 +66,24 @@ img_path = "/Users/ashleyhummel/Desktop/creature_bot_images"
 file_name = creature_prompt + ".png"
 full_file_name = os.path.join(img_path, file_name)
 
-src = images[3].get_attribute('src') # images[3] is the FIRST generated image
-urllib.request.urlretrieve(src, full_file_name) # save image to specific folder with a file name
+print("getting image...")
+src = images[4].get_attribute('src') # images[4] is the FIRST generated image
+print(src)
+# urllib.request.urlretrieve(src, full_file_name, headers={"User-Agent": "Mozilla/5.0"}) # save image to specific folder with a file name
+r = requests.get(src, stream=True, headers={'User-agent': 'Mozilla/5.0'})
+with open(full_file_name, 'wb') as f:
+    r.raw.decode_content = True
+    shutil.copyfileobj(r.raw, f)
+    
+print("got image")
 
 driver.quit()
 
 # POST TO TWITTER :D
 
+print("posting...")
 media = api.media_upload(img_path + "/" + file_name)
+print("posted")
 
 # post tweet
-api.update_status(status=creature_prompt, media_ids=[media.media_id])
+api.update_status(status=creature_prompt + "#craiyon #dallemini #ai", media_ids=[media.media_id])
