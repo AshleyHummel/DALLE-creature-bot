@@ -8,14 +8,16 @@ Visit it here! --> https://twitter.com/DALLE_creatures
 - Uses Selenium to input prompt into https://www.craiyon.com/ (DALLE mini)
 - Downloads one of the generated images and posts it to Twitter with its corresponding prompt
 
-## Features
+## Features/Packages
 - Pulls Twitter API keys/tokens from local environment variables
--Uses tweepy (python library to access Twitter API)
-
-WORK IN PROGRESS
+- tweepy (python library to access Twitter API)
+- BeautifulSoup (bs4)
+- requests
+- selenium
+- Executes Cron Job through Ksh script to make automated posts
 
 ## Content
-<img src="image.png" width="700">
+<img src="content.png" width="500">
 
 ## License
 This project is open source and available under the MIT License.
